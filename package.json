@@ -1,0 +1,14 @@
+{
+  "name": "gcp-security-group-update",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fortinet",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/compute": "^0.11.0"
+  }
+}
