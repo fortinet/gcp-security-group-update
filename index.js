@@ -92,6 +92,13 @@ exports.main = async function(req, res) {
             res.sendStatus(500);
             return;
         }
+        for (let item of tags) {
+            if (item === NETWORK_QUARANTINE_TAG) {
+                console.log(`Tag already defined on VM${vm.id}`);
+                res.send(409, {message: `Tag ${NETWORK_QUARANTINE_TAG} already defined on VM ${vm.id}`});
+                return;
+            }
+        }
 
         tags.push(NETWORK_QUARANTINE_TAG);
 
@@ -106,7 +113,7 @@ exports.main = async function(req, res) {
         }
     } else {
         console.log('Failed to find Instance');
-        res.sendStatus(404)
+        res.sendStatus(404);
     }
 
 };
