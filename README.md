@@ -1,18 +1,21 @@
 # Introduction
-This Google Cloud Function works with a Fortigate Automation Action to change the network tag of a requested Compute instance to one specified in an environment variable. This function uses Node.js 8 and works by first fetching a list of VMs and sorting through them for the VM with the IP address specified in the Fortigate trigger; it then attaches a network tag (specified in an environment variable) to the VM.
+This Google Cloud function works with a FortiGate Automation Action to change the network tag of a requested Compute instance to one specified in an environment variable. This function uses Node.js 8 and works by first fetching a list of VMs and sorting through them for the VM with the IP address specified in the FortiGate trigger; it then attaches a network tag (specified in an environment variable) to the VM.
 
 > **Note:** Currently only anonymous GCP functions are supported. It is recommended that you secure your function to prevent unauthorized access.
 
+# Requirements
+This function requires:
+* FortiOS 6.2 or higher
+* A service account with an Access Key and Secret. For details on setting up a Service Account, refer to the Google Cloud article [Creating and managing service accounts](https://cloud.google.com/iam/docs/creating-managing-service-accounts).
+* Node.js 8
+
 # Set up the Google Cloud function
-
-This function requires a service account to be set up with an Access Key and Secret. For details on setting up a Service Account, refer to the Google Cloud article [Creating and managing service accounts](https://cloud.google.com/iam/docs/creating-managing-service-accounts).
-
   1. In the Google Cloud Platform, select **Cloud Functions**.
   2. Click **Create Function**.
   3. Enter a function **Name**.
   4. Set the **Trigger** to **HTTP**.
   5. Set the **Runtime** to **Node.js 8**.
-  6. Copy and paste or upload the `index.js` code and JSON package.
+  6. Copy and paste or upload the `index.js` and `package.json` files.
   7. For **Function to Execute**, type `main`.
   8. Under **Advanced Options**, select a service account with **Compute** privileges.
   9. Click **Add Variables** and add the following Environment Variables:
@@ -21,7 +24,6 @@ This function requires a service account to be set up with an Access Key and Sec
   10. Click **Create**.
 
 # Set up the FortiGate
-
   1. Log into your FortiGate.
   2. Select **Security Fabric > Automation**.
   3. Click **Create New**.
